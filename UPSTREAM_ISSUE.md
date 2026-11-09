@@ -74,7 +74,7 @@ for (let i = 0; i < 3; i++) await mountAndClick();
 
 ### Reproduction
 
-REPRO_URL
+https://github.com/gabrielgrant/qwik-repro-dispatch-after-render (StackBlitz: https://stackblitz.com/github/gabrielgrant/qwik-repro-dispatch-after-render)
 
 ### Steps to reproduce
 
