@@ -1,6 +1,6 @@
 {
-  "name": "my-qwik-empty-starter",
-  "description": "Blank project with routing included",
+  "name": "qwik-repro-dispatch-after-render",
+  "description": "Qwik 2 rc: event handlers run after native propagation right after render()",
   "engines": {
     "node": ">21"
   },
@@ -8,27 +8,21 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "qwik build",
-    "build.client": "vite build",
-    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build": "vite build",
     "build.types": "tsc --incremental --noEmit",
-    "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
-    "dev": "vite --mode ssr",
-    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "dev": "vite",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
     "lint": "eslint \"src/**/*.ts*\"",
-    "preview": "qwik build preview && vite preview --open",
-    "start": "vite --open --mode ssr",
-    "qwik": "qwik"
+    "preview": "vite build && vite preview",
+    "start": "vite --open"
   },
   "devDependencies": {
     "@eslint/js": "latest",
-    "@qwik.dev/core": "https://pkg.pr.new/QwikDev/qwik/@qwik.dev/core@978d9c0",
-    "@qwik.dev/router": "https://pkg.pr.new/QwikDev/qwik/@qwik.dev/router@978d9c0",
+    "@qwik.dev/core": "2.0.0-rc.5",
     "@types/node": "25.6.0",
     "eslint": "10.0.3",
-    "eslint-plugin-qwik": "2.0.0-rc.4",
+    "eslint-plugin-qwik": "2.0.0-rc.5",
     "globals": "17.0.0",
     "prettier": "3.7.4",
     "typescript": "5.9.3",

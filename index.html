@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Qwik: event dispatch right after render()</title>
+  </head>
+  <body>
+    <h1>Qwik: handlers run too late right after <code>render()</code></h1>
+    <p>
+      Each box is its own client container, created with
+      <code>await render(host, &lt;Demo /&gt;)</code> in
+      <code>src/main.tsx</code>. As soon as <code>render()</code> resolves, the
+      script clicks the box's button with <code>button.click()</code>.
+    </p>
+    <p>
+      The button's <code>onClick$</code> calls
+      <code>ev.stopPropagation()</code> (in a <code>sync$</code>), so the
+      wrapper's <code>onClick$</code> must never run.
+      <b>Expected for every box: "wrapper handler: 0".</b>
+    </p>
+    <p>
+      With @qwik.dev/core 2.0.0-beta.37 every box shows OK. With 2.0.0-beta.38
+      through 2.0.0-rc.5, boxes #2 and #3 show BUG. Box #1 usually shows OK only
+      because its <code>render()</code> had to load the component's code first,
+      which gives Qwik time to finish its async container setup.
+    </p>
+    <p>
+      <button id="mount">Mount another container and click it</button>
+      <button id="mount-cross">
+        Mount another container, then click container #1
+      </button>
+    </p>
+    <p>
+      Clicking any box by hand later is fine: the handlers are only deferred in
+      the short window right after a <code>render()</code>.
+    </p>
+    <div id="containers"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
